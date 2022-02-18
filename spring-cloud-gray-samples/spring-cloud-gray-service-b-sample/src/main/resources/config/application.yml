@@ -54,7 +54,7 @@ eureka:
 #    initial-status: starting
 feign:
   hystrix:
-    enabled: true
+    enabled: false
 hystrix:
   threadpool:
     default:
@@ -63,11 +63,11 @@ hystrix:
 
 gray:
   mock:
-    enabled: true
+    enabled: false
 
   enabled: true
   hystrix:
-    enabled: true
+    enabled: false
   server:
     url: http://gray-Server
     loadbalanced: true
@@ -78,20 +78,20 @@ gray:
       longpolling: 60000
     runenv: web
     infosUpdateIntervalTimerInMs: 0
-    infosInitializeDelayTimeInMs: 10000
+    infosInitializeDelayTimeInMs: 60000
     instance:
       grayEnroll: false
-      grayEnrollDealyTimeInMs: 20000
+      grayEnrollDealyTimeInMs: 60000
   holdoutServer:
-    enabled: false
+    enabled: true
     services:
-      "service-a": starting
+      "service-a": up
   request:
     track:
       enabled: true
       trackType: web
-      definitionsUpdateIntervalTimerInMs: 10000
-      definitionsInitializeDelayTimeInMs: 10000
+      definitionsUpdateIntervalTimerInMs: 60000
+      definitionsInitializeDelayTimeInMs: 60000
       web:
         track-definitions:
           #          - name: HttpIP

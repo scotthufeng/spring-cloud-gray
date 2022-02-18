@@ -1,14 +1,17 @@
 package cn.springcloud.gray.client.plugin.ribbon.nacos;
 
-import cn.springcloud.gray.servernode.ServerExplainer;
-import cn.springcloud.gray.servernode.VersionExtractor;
-import com.netflix.loadbalancer.Server;
+import java.util.Map;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.cloud.netflix.ribbon.DefaultServerIntrospector;
 import org.springframework.cloud.netflix.ribbon.ServerIntrospector;
 import org.springframework.cloud.netflix.ribbon.SpringClientFactory;
 
-import java.util.Map;
+import com.netflix.loadbalancer.Server;
+
+import cn.springcloud.gray.servernode.ServerExplainer;
+import cn.springcloud.gray.servernode.ServerSpec;
+import cn.springcloud.gray.servernode.VersionExtractor;
 
 public class NacosServerExplainer implements ServerExplainer<Server> {
 
@@ -20,16 +23,18 @@ public class NacosServerExplainer implements ServerExplainer<Server> {
         this.versionExtractor = versionExtractor;
     }
 
-//    @Override
-//    public ServerSpec<Server> apply(Server server) {
-//        String seviceId = getInstaceId(server);
-//        Map metadata = getServerMetadata(seviceId, server);
-//        return ServerSpec.<Server>builder()
-//                .server(server)
-//                .instanceId(server.getMetaInfo().getInstanceId())
-//                .serviceId(seviceId)
-//                .metadata(metadata).build();
-//    }
+    @Override
+    public ServerSpec<Server> apply(Server server) {
+        String seviceId = getServiceId(server);
+        Map metadata = getServerMetadata(seviceId, server);
+        return ServerSpec.<Server>builder()
+                .server(server)
+                .instanceId(server.getMetaInfo().getInstanceId())
+                .serviceId(seviceId)
+                .metadata(metadata)
+                .version(getVersion(server))
+                .build();
+    }
 
     @Override
     public VersionExtractor getVersionExtractor() {

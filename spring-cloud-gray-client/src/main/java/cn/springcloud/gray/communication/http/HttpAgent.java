@@ -1,8 +1,14 @@
 package cn.springcloud.gray.communication.http;
 
-import cn.springcloud.gray.http.*;
+//import cn.springcloud.gray.http.;
 
 import java.io.IOException;
+
+import cn.springcloud.gray.http.HttpHeaders;
+import cn.springcloud.gray.http.HttpMethod;
+import cn.springcloud.gray.http.HttpParams;
+import cn.springcloud.gray.http.HttpRequest;
+import cn.springcloud.gray.http.HttpResult;
 
 /**
  * @author saleson

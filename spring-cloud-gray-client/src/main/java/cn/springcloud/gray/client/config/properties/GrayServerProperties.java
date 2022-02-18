@@ -13,7 +13,7 @@ public class GrayServerProperties {
     private String url;
     private boolean loadbalanced;
     //在和灰度服务器通信时，如果交互失败，是否重试。
-    private boolean retryable = true;
+    private boolean retryable = true; 
     //重试次数
     private int retryNumberOfRetries = RetryableInformationClient.DEFAULT_NUMBER_OF_RETRIES;
 }

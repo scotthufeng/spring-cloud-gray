@@ -9,6 +9,8 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.core.env.Environment;
 import org.springframework.scheduling.annotation.EnableAsync;
 
+import cn.springcloud.gray.client.EnableGrayClient;
+
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
@@ -19,6 +21,7 @@ import java.net.UnknownHostException;
 @EnableDiscoveryClient
 @EnableFeignClients
 @EnableAsync
+//@EnableGrayClient
 public class ServiceBApplication {
     private static final org.slf4j.Logger log = LoggerFactory.getLogger(ServiceBApplication.class);
 

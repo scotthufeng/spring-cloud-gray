@@ -15,8 +15,8 @@ public class GrayTrackInfo {
 
     public static final String GRAY_TRACK_PREFIX = "_g_t_";
 
-    public static final String ATTRIBUTE_TRACE_IP = "track_ip";
-
+//    public static final String ATTRIBUTE_TRACE_IP = "track_ip"; update
+    public static final String ATTRIBUTE_TRACE_IP = "x-forwarded-for"; 
     public static final String GRAY_TRACK_TRACE_IP = GRAY_TRACK_PREFIX + ATTRIBUTE_TRACE_IP;
 
     public static final String GRAY_TRACK_ATTRIBUTE_PREFIX = GRAY_TRACK_PREFIX + "attr";

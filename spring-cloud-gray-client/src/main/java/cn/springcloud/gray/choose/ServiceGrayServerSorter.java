@@ -39,7 +39,8 @@ public class ServiceGrayServerSorter<SERVER> extends AbstractGrayServerSorter<SE
 
     @Override
     protected ServerListResult<ServerSpec<SERVER>> distinguishServerSpecList(String serviceId, List<ServerSpec<SERVER>> serverSpecs) {
-        List<ServerSpec<SERVER>> serverSpecList = serverSpecs;
+        List<ServerSpec<SERVER>> serverSpecList = new ArrayList();
+        
         GrayManager grayManager = getGrayManager();
         GrayService grayService = grayManager.getGrayService(serviceId);
         if (Objects.nonNull(grayService) && !grayService.getRoutePolicies().isEmpty()) {
@@ -51,9 +52,9 @@ public class ServiceGrayServerSorter<SERVER> extends AbstractGrayServerSorter<SE
             return new ServerListResult<>(serviceId, Collections.EMPTY_LIST, serverSpecList);
         }
 
-        List<ServerSpec<SERVER>> grayServerSpecs = new ArrayList<>(serverSpecList.size());
-        List<ServerSpec<SERVER>> normalServerSpecs = new ArrayList<>(serverSpecList.size());
-        serverSpecList.forEach(serverSpec -> {
+        List<ServerSpec<SERVER>> grayServerSpecs = new ArrayList<>();
+        List<ServerSpec<SERVER>> normalServerSpecs = new ArrayList<>();
+        serverSpecs.forEach(serverSpec -> {
             if (StringUtils.isNotEmpty(serverSpec.getVersion()) && multiVersions.contains(serverSpec.getVersion())) {
                 grayServerSpecs.add(serverSpec);
             } else {

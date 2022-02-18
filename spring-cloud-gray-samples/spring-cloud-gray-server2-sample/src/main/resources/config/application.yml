@@ -1,5 +1,5 @@
 server:
-  port: 20203
+  port: 20202
 spring:
   main:
     allow-bean-definition-overriding: true
@@ -9,7 +9,7 @@ spring:
   #通用数据源配置
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/gray_server01?charset=utf8mb4&useSSL=false
+    url: jdbc:mysql://localhost:3306/gray_server?charset=utf8mb4&useSSL=false&serverTimezone=UTC
     username: root
     password: root
     # Hikari 数据源专用配置
@@ -62,8 +62,8 @@ gray:
       peerNodes:
         - host: localhost
           port: 20202
-        - host: localhost
-          port: 20203
+        #- host: localhost
+        #  port: 20203
     evictionIntervalTimerInMs: 30000
     instance:
       normalInstanceStatus: STARTING,UP,OUT_OF_SERVICE

@@ -51,7 +51,7 @@ gray:
       grayEnroll: false
       grayEnrollDealyTimeInMs: 20000
   holdoutServer:
-    enabled: false
+    enabled: true
     services:
       "service-a": starting
   request:

@@ -38,7 +38,8 @@ public class HttpGrayTrackRecordHelper {
         String prefix = grayPrefix + GrayTrackInfo.GRAY_TRACK_SEPARATE;
         if (MapUtils.isNotEmpty(infos)) {
             infos.entrySet().forEach(entry -> {
-                recordDevice.record(prefix + entry.getKey(), entry.getValue());
+//                recordDevice.record(prefix + entry.getKey(), entry.getValue());
+            	recordDevice.record(entry.getKey(), entry.getValue());
             });
         }
     }
@@ -47,7 +48,8 @@ public class HttpGrayTrackRecordHelper {
             HttpGrayTrackRecordDevice recordDevice, String grayPrefix, Map<String, List<String>> infos) {
         String prefix = grayPrefix + GrayTrackInfo.GRAY_TRACK_SEPARATE;
         infos.entrySet().forEach(entry -> {
-            recordDevice.record(prefix + entry.getKey(), entry.getValue());
+//            recordDevice.record(prefix + entry.getKey(), entry.getValue());
+            recordDevice.record(entry.getKey(), entry.getValue());
         });
     }
 
