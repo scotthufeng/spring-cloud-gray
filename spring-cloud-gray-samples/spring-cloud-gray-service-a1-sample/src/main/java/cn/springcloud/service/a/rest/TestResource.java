@@ -1,14 +1,22 @@
 package cn.springcloud.service.a.rest;
 
-import com.google.common.collect.ImmutableMap;
-import lombok.extern.slf4j.Slf4j;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletRequest;
-import java.util.Map;
+import com.google.common.collect.ImmutableMap;
+
+import cn.springcloud.service.a.feign.FeignTest;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Created by saleson on 2017/10/18.
@@ -19,7 +27,8 @@ import java.util.Map;
 public class TestResource {
     @Autowired
     Environment env;
-
+    @Autowired
+    FeignTest feign;
     @RequestMapping(value = "/get", method = RequestMethod.GET)
     @ResponseBody
     public Map<String, String> testGet(
@@ -33,6 +42,7 @@ public class TestResource {
 //            }
 //        }
 //        request.getHeader("");
+    	feign.testGet();
         return ImmutableMap.of("test", "success.", "version", StringUtils.defaultIfEmpty(version, ""), "serverPort", env.getProperty("server.port"));
     }
 

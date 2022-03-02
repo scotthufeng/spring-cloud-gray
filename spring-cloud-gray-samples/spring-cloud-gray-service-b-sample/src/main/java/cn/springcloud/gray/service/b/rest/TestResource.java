@@ -1,20 +1,27 @@
 package cn.springcloud.gray.service.b.rest;
 
+import java.util.Map;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
+
+import com.google.common.collect.ImmutableMap;
+
 import cn.springcloud.gray.client.config.properties.GrayProperties;
 import cn.springcloud.gray.service.b.feign.Test2Client;
 import cn.springcloud.gray.service.b.feign.TestClient;
 import cn.springcloud.gray.service.b.service.TestService;
-import com.google.common.collect.ImmutableMap;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
-
-import javax.servlet.http.HttpServletRequest;
-import java.util.Map;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
 
 /**
  * Created by saleson on 2017/10/18.
@@ -26,18 +33,19 @@ public class TestResource {
     @Autowired
     private RestTemplate restTemplate;
     @Autowired
-    private TestClient testClient;
+    private TestClient testClient; 
     @Autowired
     private Test2Client test2Client;
     @Autowired
     private TestService testService;
-    @Autowired
-    private GrayProperties grayProperties;
+//    @Autowired
+//    private GrayProperties grayProperties;
 
 
     @RequestMapping(value = "/testGet", method = RequestMethod.GET)
     @ResponseBody
     public Map<String, Object> testGet(HttpServletRequest request) {
+    	log.info("from service A ");
         return ImmutableMap.of("restTemplateGet", "success.", "service-b-result", "");
     }
 
@@ -86,6 +94,8 @@ public class TestResource {
 ////            }
 //        }
         Map map = testClient.testGet(version);
+        map = testClient.testGet(version);
+        map = testClient.testGet(version);
         return ImmutableMap.of("feignGet", "success.", "service-a-result", map);
     }
 
@@ -104,14 +114,17 @@ public class TestResource {
             @RequestParam(value = "version", required = false) String version,
             HttpServletRequest request) {
         Map map = test2Client.testGet(version);
+          map = test2Client.testGet(version);
+          map = test2Client.testGet(version);
+          map = test2Client.testGet(version);
         return ImmutableMap.of("feignGet", "success.", "service-a-result", map);
     }
 
 
-    @RequestMapping(value = "/graySwith", method = RequestMethod.GET)
-    @ResponseBody
-    public String graySwith() {
-        grayProperties.setEnabled(!grayProperties.isEnabled());
-        return "sccuess";
-    }
+//    @RequestMapping(value = "/graySwith", method = RequestMethod.GET)
+//    @ResponseBody
+//    public String graySwith() {
+//        grayProperties.setEnabled(!grayProperties.isEnabled());
+//        return "sccuess";
+//    }
 }

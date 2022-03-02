@@ -27,7 +27,7 @@ gray:
   mock:
     enabled: true
 
-  enabled: true
+  enabled: false
   hystrix:
     enabled: true
   server:
@@ -47,7 +47,7 @@ gray:
   holdoutServer:
     enabled: true
     services:
-      "service-a": starting
+      "service-b": up
   request:
     track:
       enabled: true
@@ -64,6 +64,7 @@ gray:
 #      grayEnroll: false #是否在启动后自动注册成灰度实例
 logging:
   level:
+    
     cn:
       springcloud:
         gray: debug

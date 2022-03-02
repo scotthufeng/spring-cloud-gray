@@ -5,7 +5,12 @@ import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.openfeign.DefaultFeignLoggerFactory;
+import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.context.annotation.Bean;
 import org.springframework.core.env.Environment;
+
+import feign.Logger;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -15,6 +20,7 @@ import java.net.UnknownHostException;
  */
 @SpringBootApplication
 @EnableDiscoveryClient
+@EnableFeignClients(  )
 public class ServiceAApplication {
     private static final org.slf4j.Logger log = LoggerFactory.getLogger(ServiceAApplication.class);
 
@@ -34,4 +40,10 @@ public class ServiceAApplication {
                         + "Config Server: \t{}\n----------------------------------------------------------",
                 configServerStatus == null ? "Not found or not setup for this application" : configServerStatus);
     }
+    @Bean
+    Logger.Level feignLoggerLevel() {
+
+    	return Logger.Level.FULL;
+
+      }
 }

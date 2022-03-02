@@ -1,10 +1,14 @@
 spring:
+  main:
+    allow-bean-definition-overriding: true
   application:
     name: service-a
   cloud:
     nacos:
       discovery:
         server-addr: 127.0.0.1:8848
+        metadata:
+          version: 1.0
 server:
   port: 20103
 eureka:
@@ -28,7 +32,13 @@ eureka:
       instanceId: s
 #    initial-status: starting
 
-
+feign:
+  client:
+    config:
+      default: 
+        connectTimeout: 50000
+        readTimeout: 50000
+        loggerLevel: full
 gray:
   mock:
     enabled: true
@@ -53,7 +63,8 @@ gray:
   holdoutServer:
     enabled: true
     services:
-      "service-a": starting
+      "service-a": up
+      "service-b": up
   request:
     track:
       enabled: true

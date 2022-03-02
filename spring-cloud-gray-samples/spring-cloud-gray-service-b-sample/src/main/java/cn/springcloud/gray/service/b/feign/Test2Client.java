@@ -15,5 +15,5 @@ public interface Test2Client {
 
     @RequestMapping(path = "/api/test/get", method = RequestMethod.GET)
     Map<String, String> testGet(@RequestParam(value = "version", required = false) String version);
-
+ 
 }

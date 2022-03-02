@@ -11,6 +11,8 @@ spring:
     nacos:
       discovery:
         server-addr: 127.0.0.1:8848
+        metadata:
+          version: 1.0
     stream:
       bindings:
         GrayEventInput:
@@ -52,14 +54,21 @@ eureka:
     lease-expiration-duration-in-seconds: 15
     prefer-ip-address: true
 #    initial-status: starting
+
 feign:
   hystrix:
     enabled: false
+  client:
+    default:
+      config:
+        connectTimeout: 50000
+        readTimeout: 50000
+        loggerLevel: full
 hystrix:
   threadpool:
     default:
       coreSize: 100
-
+ 
 
 gray:
   mock:

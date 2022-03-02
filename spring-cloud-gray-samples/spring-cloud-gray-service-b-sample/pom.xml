@@ -70,7 +70,7 @@
                </dependency>
 
         <dependency>
-            <groupId>cn.springcloud.gray</groupId>
+            <groupId>cn.springcloud.gray</groupId> 
             <artifactId>spring-cloud-gray-plugin-feign</artifactId>
             <version>${project.version}</version>
         </dependency>

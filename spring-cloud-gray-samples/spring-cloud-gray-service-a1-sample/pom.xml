@@ -35,7 +35,10 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
-
+		<dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
        <dependency>
            <groupId>com.alibaba.cloud</groupId>
            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
@@ -46,7 +49,11 @@
              <artifactId>spring-cloud-gray-plugin-ribbon-nacos-discovery</artifactId>
              <version>${project.version}</version>
          </dependency>
-
+		<dependency>
+            <groupId>cn.springcloud.gray</groupId> 
+            <artifactId>spring-cloud-gray-plugin-feign</artifactId>
+            <version>${project.version}</version>
+        </dependency>
           <dependency>
               <groupId>cn.springcloud.gray</groupId>
               <artifactId>spring-cloud-starter-gray-client</artifactId>
